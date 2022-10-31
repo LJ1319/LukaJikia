@@ -7,7 +7,7 @@ namespace Practice_8
         static void Main(string[] args)
         {
 
-            DemonstrateNumber(GetNumber());
+            RepresentateNumber(GetNumber());
         }
 
         static int GetNumber()
@@ -24,18 +24,30 @@ namespace Practice_8
             return number;
         }
 
-        static void DemonstrateNumber(int number)
+        static void RepresentateNumber(int number)
         {
             int count = 0;
+            int rem;
+            int temp = number;
             Console.Write($"{number} = ");
-            while (number != 0)
+            while (temp > 0)
             {
                 count++;
-                number = (int)(number - number % Math.Pow(10, count));
-                Console.Write($"{count} * 10^{count - 1} + ");
-                //Console.WriteLine(number);
-            }
 
+                rem = temp % 10;
+                temp /= 10;
+
+                number = (int)(number - number % Math.Pow(10, count));
+
+                if (temp == 0)
+                {
+                    Console.Write($"{rem} * 10^{count - 1}");
+                }
+                else
+                {
+                    Console.Write($"{rem} * 10^{count - 1} + ");
+                }
+            }
         }
     }
 }
