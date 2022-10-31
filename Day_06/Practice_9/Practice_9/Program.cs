@@ -7,6 +7,9 @@ namespace Practice_9
         static void Main(string[] args)
         {
             Product(1, 3, 4, 15, 13, 23, 98);
+
+            int[] myIntArray = { 1, 3, 4, 15, 13, 23, 98 };
+            Product(myIntArray);
         }
 
         static int Product(params int[] userArr)
@@ -18,9 +21,9 @@ namespace Practice_9
                 product *= userArr[i];
             }
 
-            Console.WriteLine($"The product pf array elements is: {product}");
+            Console.WriteLine($"The product of array elements is: {product}");
 
-            return product; 
+            return product;
         }
     }
 }
