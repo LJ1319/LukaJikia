@@ -17,21 +17,23 @@ namespace Practice_3
             Console.Write("Enter seconds: ");
             clock1.Seconds = Convert.ToInt32(Console.ReadLine());
 
+            clock1.GetCurrentTime();
 
             clock1.SecondForward();
             clock1.SecondForward();
             clock1.SecondForward();
             clock1.SecondForward();
             clock1.GetCurrentTime();
+
             clock1.SecondForward();
             clock1.SecondForward();
             clock1.SecondForward();
             clock1.MinuteForward();
-
-            //clock1.SecondBack();
-            //clock1.MinuteBack();
             clock1.GetCurrentTime();
 
+            clock1.SecondBack();
+            clock1.MinuteBack();
+            clock1.GetCurrentTime();
         }
     }
 }
