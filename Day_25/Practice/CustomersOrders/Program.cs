@@ -109,21 +109,21 @@ namespace CustomersOrders
             Console.WriteLine($"Customer(s) with average more than 10:");
             var customersAverageMoreThanTen = from c in customersList
                                               join o in ordersList
-                                              on c.CustomerId equals o.CustomerId
-                                              group o by o.CustomerId into g
+                                              on c.CustomerId equals o.CustomerId into g
                                               select new
                                               {
-                                                  g.Key,
-                                                  //Name = g.Where(c => c.CustomerId == g.Key).ToList()[0].CustomerName,
-                                                  Average = g.Average(o => o.Price),
-                                                  AverageScore = g.Average(o => o.Price) > 10
+                                                  c.CustomerName,
+                                                  c.CustomerId,
+                                                  Orders = g,
+                                                  Average = g.Average(o => o.Price)
                                               };
 
             foreach (var customerAverageMoreThanTen in customersAverageMoreThanTen)
             {
                 if (customerAverageMoreThanTen.Average > 10)
-                    Console.WriteLine(customerAverageMoreThanTen.Key);
-                //Console.WriteLine($"{customerAverageMoreThanTen.Key}|{customerAverageMoreThanTen.AverageScore}|{customerAverageMoreThanTen.Average}");
+                {
+                    Console.WriteLine($"{customerAverageMoreThanTen.CustomerId}|{customerAverageMoreThanTen.CustomerName}");
+                }
             }
             Console.WriteLine("------------------------------");
         }
