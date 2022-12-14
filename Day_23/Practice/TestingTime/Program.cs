@@ -2,17 +2,24 @@
 
 namespace TestingTime
 {
-    internal class Program
+    internal partial class Program
     {
+        public static void userTest_QuestionAnswered(object sender, QuestionAnsweredEventArgs args)
+        {
+            Console.WriteLine("Your answer is " + args.IsCorrect);
+        }
+
         static void Main()
         {
             Console.WriteLine("1)Start Test\t2)Add Test");
             Console.Write("Enter your choice: ");
             int userChoice = int.Parse(Console.ReadLine());
 
-            string filePath = @"C:\Users\LJ\source\repos\LukaJikia\Day_23\Practice\TestingTime\Tests.txt";
+            string dataFilePath = @"C:\Users\LJ\source\repos\LukaJikia\Day_23\Practice\TestingTime\Tests.txt";
+            string logFilePath = @"C:\Users\LJ\source\repos\LukaJikia\Day_23\Practice\TestingTime\Logs.txt";
 
             TestingTime userTest = new TestingTime();
+            userTest.QuestionAnswered += userTest_QuestionAnswered;
 
             string userCorrectAnswerInput;
             int userCorrectAnswersCount = 0;
@@ -26,7 +33,7 @@ namespace TestingTime
             switch (userChoice)
             {
                 case 1:
-                    userTest.startTest(filePath);
+                    userTest.StartTest(dataFilePath);
                     int idx = 0;
 
                     foreach (var line in userTest.text)
@@ -42,19 +49,29 @@ namespace TestingTime
 
                         Console.Write("Correct Answer: ");
                         Console.WriteLine(userTest.correctAnswers[idx]);
+
+                        if ($"{userCorrectAnswers[idx]} " == userTest.correctAnswers[idx])
+                        {
+                            userCorrectAnswersCount += 1;
+                            userTest.AnswerQuestion(true, logFilePath);
+                        }
+                        else
+                        {
+                            userTest.AnswerQuestion(false, logFilePath);
+                        }
                         idx += 1;
                     }
 
-                    for (int i = 0; i < userTest.correctAnswers.Count; i++)
+                    /*for (int i = 0; i < userTest.correctAnswers.Count; i++)
                     {
                         for (int j = 0; j < userCorrectAnswers.Count; j++)
                         {
-                            if (userTest.correctAnswers[i] == $"{userCorrectAnswers[j]} ")
+                            if (i == j & userTest.correctAnswers[i] == $"{userCorrectAnswers[j]} ")
                             {
                                 userCorrectAnswersCount += 1;
                             }
                         }
-                    }
+                    }*/
 
                     Console.WriteLine($"{userCorrectAnswersCount} / {userCorrectAnswers.Count}");
 
@@ -123,7 +140,7 @@ namespace TestingTime
                     }
 
                     userContents.Add(userContent.ToString());
-                    userTest.addTest(filePath, userContents);
+                    userTest.AddTest(dataFilePath, userContents);
                     break;
                 default:
                     break;

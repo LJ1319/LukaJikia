@@ -6,9 +6,9 @@
 
         public List<string> correctAnswers = new List<string>();
 
-        public void startTest(string filePath)
+        public void StartTest(string dataFilePath)
         {
-            string[] lines = File.ReadAllLines(filePath);
+            string[] lines = File.ReadAllLines(dataFilePath);
 
             foreach (var line in lines)
             {
@@ -27,9 +27,33 @@
             }
         }
 
-        public void addTest(string filePath, List<string> userContent)
+        public void AnswerQuestion(bool isCorrect, string logFilePath)
         {
-            File.AppendAllLines(filePath, userContent);
+            QuestionAnsweredEventArgs args = new QuestionAnsweredEventArgs();
+            args.IsCorrect = isCorrect;
+            OnQuestionAnswered(args);
+
+            using (StreamWriter w = File.AppendText(logFilePath))
+            {
+                Log(isCorrect.ToString(), w);
+            }
+        }
+
+        public void Log(string logMessage, TextWriter w)
+        {
+            w.WriteLine(logMessage);
+        }
+
+        public void AddTest(string dataFilePath, List<string> userContent)
+        {
+            File.AppendAllLines(dataFilePath, userContent);
+        }
+
+        public event EventHandler<QuestionAnsweredEventArgs> QuestionAnswered;
+
+        protected virtual void OnQuestionAnswered(QuestionAnsweredEventArgs args) 
+        {
+            QuestionAnswered?.Invoke(this, args);
         }
     }
 }
