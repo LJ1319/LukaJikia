@@ -90,18 +90,17 @@ namespace CustomersOrders
             Console.WriteLine($"Customer(s) with more than one order:");
             var customersMoreThanOneOrder = from c in customersList
                                             join o in ordersList
-                                            on c.CustomerId equals o.CustomerId
-                                            group c by o.CustomerId into g
+                                            on c.CustomerId equals o.CustomerId into g
                                             where g.Count() > 1
                                             select new
                                             {
-                                                g.Key,
-                                                Name = g.Where(c => c.CustomerId == g.Key).ToList()[0].CustomerName
+                                                c.CustomerId,
+                                                c.CustomerName,
                                             };
 
             foreach (var customerMoreThanOneOrder in customersMoreThanOneOrder)
             {
-                Console.WriteLine($"{customerMoreThanOneOrder.Key}|{customerMoreThanOneOrder.Name}");
+                Console.WriteLine($"{customerMoreThanOneOrder.CustomerId}|{customerMoreThanOneOrder.CustomerName}");
             }
             Console.WriteLine("------------------------------");
 
