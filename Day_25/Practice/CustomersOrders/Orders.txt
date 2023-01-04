@@ -1,0 +1,20 @@
+1|2020/12/12|Coca-cola|3.0|1
+2|2020/11/11|Pepsi|3.0|2
+3|2020/09/09|Staropramen|4.0|2
+4|2020/12/12|Argo|2.0|3
+5|2020/12/13|Heineken|4.0|4
+6|2020/12/14|Black Lion Wheat|6.0|5
+7|2020/12/15|Black Lion Apa|6.0|1
+8|2020/12/16|Black Lion Ipa|60.0|2
+9|2020/12/17|Black Lion Black|60.0|3
+10|2020/12/18|Aluda Red|4.0|4
+11|2020/12/19|Aluda Green|4.0|5
+12|2020/12/21|Aluda Blue|4.0|1
+13|2020/12/22|Aviator Yellow|2.5|2
+14|2020/12/23|Aviator Blue|2.5|3
+15|2020/12/24|Aviator Green|2.5|4
+16|2020/12/25|Tuborg|3.0|5
+17|2020/12/26|Tuborg|3.0|1
+18|2020/12/27|Black Lion HP|6.0|2
+19|2020/12/28|Bavaria|3.5|3
+20|2020/12/29|Bavaria|3.5|4
